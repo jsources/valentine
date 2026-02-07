@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Be My Valentine 💖</title>
   <style>
     body {
@@ -75,16 +76,36 @@
 	}
 
 	.photo {
-	  width: 425px; /* change size here */
+	  width: 90%;
+	  max-width: 425px;
 	  border-radius: 20px;
-	  margin: 15px;
+	  margin: 15px auto;
+	}
+
+	.photo-large {
+	  width: 28%;
+	  max-width: 220px;
+	  border-radius: 20px;
+	  margin: 10px;
 	}
 	
-	.photo-large {
-	  width: 220px;   /* 👈 change this number */
-	  border-radius: 20px;
-	  margin: 15px;
+		h1 {
+	  font-size: clamp(24px, 6vw, 40px);
 	}
+
+	button {
+	  padding: 12px 20px;
+	  font-size: clamp(16px, 4vw, 20px);
+	}
+	
+		@media (max-width: 600px) {
+	  .photo-large {
+		width: 80%;
+	  }
+	}
+
+
+
 
 
 
