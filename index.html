@@ -4,15 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Be My Valentine 💖</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      height: 100vh;
       margin: 0;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
     }
 
     .card {
@@ -25,20 +30,26 @@
 
     h1 {
       color: #ff4d6d;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      font-size: clamp(24px, 6vw, 40px);
+    }
+
+    p {
+      font-size: 18px;
     }
 
     .buttons {
       display: flex;
       gap: 20px;
       justify-content: center;
+      flex-wrap: wrap;
     }
 
     button {
       border: none;
       border-radius: 12px;
-      padding: 15px 30px;
-      font-size: 18px;
+      padding: 12px 22px;
+      font-size: clamp(16px, 4vw, 20px);
       cursor: pointer;
       transition: all 0.3s ease;
     }
@@ -51,81 +62,62 @@
     #noBtn {
       background-color: #ddd;
     }
-	
-		.photo {
-		width: 500px;   /* 👈 change this number to resize photos */
-		border-radius: 20px;
-		margin: 20px;
-	}
-	
-	.page {
-	  min-height: 100vh;
-	  background: linear-gradient(135deg, #ff4d6d, #ffb6c1);
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	
-	  /* 👇 IMPORTANT CHANGES */
-	  justify-content: flex-start;
-	  padding: 30px 15px;
-	
-	  text-align: center;
-	  color: white;
-	  font-family: Arial, sans-serif;
-	  transition: opacity 1.5s ease;
-	}
-	  .page h1 {
-	  margin-top: 20px;
-	}
-	.page > div {
- 	 display: flex;
-	  flex-wrap: wrap;
-	  justify-content: center;
-	}
 
+    /* Pages after clicking YES */
+    .page {
+      min-height: 100vh;
+      width: 100%;
+      background: linear-gradient(135deg, #ff4d6d, #ffb6c1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 30px 15px;
+      text-align: center;
+      color: white;
+      transition: opacity 1.5s ease;
+    }
 
-	.fade-out {
-	  opacity: 0;
-	}
+    .page.center {
+      justify-content: center;
+    }
 
-	.photo {
-	  width: 90%;
-	  max-width: 425px;
-	  border-radius: 20px;
-	  margin: 15px auto;
-	}
+    .fade-out {
+      opacity: 0;
+    }
 
-	.photo-large {
-	  width: 28%;
-	  max-width: 220px;
-	  border-radius: 20px;
-	  margin: 10px;
-	}
-	
-		h1 {
-	  font-size: clamp(24px, 6vw, 40px);
-	}
+    .photo {
+      width: 90%;
+      max-width: 425px;
+      border-radius: 20px;
+      margin: 15px auto;
+    }
 
-	button {
-	  padding: 12px 20px;
-	  font-size: clamp(16px, 4vw, 20px);
-	}
-	
-		@media (max-width: 600px) {
-	  .photo-large {
-		width: 80%;
-	  }
-			.page.center {
-  	justify-content: center;
-	}
+    .photo-large {
+      width: 28%;
+      max-width: 220px;
+      border-radius: 20px;
+      margin: 10px;
+    }
 
+    .photo-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
+    @media (max-width: 600px) {
+      .photo-large {
+        width: 80%;
+      }
 
-
-
-
+      .card {
+        padding: 25px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <div class="card">
@@ -136,102 +128,91 @@
     </div>
   </div>
 
-<script>
-  let yesSize = 1;
-  let page = 0;
+  <script>
+    let yesSize = 1;
+    let page = 0;
 
-  function noClicked() {
-    yesSize += 0.3;
-    document.getElementById("yesBtn").style.transform =
-      `scale(${yesSize})`;
-  }
+    function noClicked() {
+      yesSize += 0.3;
+      document.getElementById("yesBtn").style.transform =
+        `scale(${yesSize})`;
+    }
 
-  function yesClicked() {
-    page = 1;
-    renderPage();
-  }
-
-  function nextPage() {
-    page++;
-    renderPage();
-  }
-
- function renderPage() {
-  let content = "";
-
-  if (page === 1) {
-    content = `
-      <h1>WOOOOHOOOO💖</h1>
-      <p>Thank you eepy 😘</p>
-      <button onclick="nextPage()">Click for surprise ➡️</button>
-    `;
-  }
-
-  else if (page === 2) {
-    content = `
-      <img src="photo1.jpg" class="photo">
-      <button onclick="nextPage()">Next ➡️</button>
-    `;
-  }
-
-  else if (page === 3) {
-    content = `
-      <img src="photo7.jpg" class="photo">
-      <button onclick="nextPage()">Next ➡️</button>
-    `;
-  }
-  
-   else if (page === 4) {
-    content = `
-      <img src="photo2.jpg" class="photo">
-      <button onclick="nextPage()">Next ➡️</button>
-    `;
-  }
-
-  else if (page === 5) {
-    content = `
-      <img src="photo3.jpg" class="photo">
-    `;
-  }
-
-  else if (page === 6) {
-    content = `
-      <h1>I LOVE YOU SO MUCH EEPY 💖</h1>
-      <div>
-		<img src="photo4.jpg" class="photo-large">
-		<img src="photo5.jpg" class="photo-large">
-		<img src="photo6.jpg" class="photo-large">
-
-      </div>
-    `;
-  }
-
-const centeredPages = [1, 2, 3, 4];
-const isCentered = centeredPages.includes(page);
-
-document.body.innerHTML = `
-  <div class="page ${isCentered ? "center" : ""}" id="page">
-    ${content}
-  </div>
-`;
-
-  // ⏱ Fade out after 2.5 seconds on page 4
-  if (page === 5) {
-    setTimeout(() => {
-      document.getElementById("page").classList.add("fade-out");
-    }, 2500);
-
-    setTimeout(() => {
-      page = 6;
+    function yesClicked() {
+      page = 1;
       renderPage();
-    }, 5500); // wait for fade to finish
-  }
-}
+    }
 
-</script>
+    function nextPage() {
+      page++;
+      renderPage();
+    }
 
+    function renderPage() {
+      let content = "";
+
+      if (page === 1) {
+        content = `
+          <h1>WOOOOHOOOO 💖</h1>
+          <p>Thank you eepy 😘</p>
+          <button onclick="nextPage()">Click for surprise ➡️</button>
+        `;
+      } 
+      else if (page === 2) {
+        content = `
+          <img src="photo1.jpg" class="photo">
+          <button onclick="nextPage()">Next ➡️</button>
+        `;
+      } 
+      else if (page === 3) {
+        content = `
+          <img src="photo7.jpg" class="photo">
+          <button onclick="nextPage()">Next ➡️</button>
+        `;
+      } 
+      else if (page === 4) {
+        content = `
+          <img src="photo2.jpg" class="photo">
+          <button onclick="nextPage()">Next ➡️</button>
+        `;
+      } 
+      else if (page === 5) {
+        content = `
+          <img src="photo3.jpg" class="photo">
+        `;
+      } 
+      else if (page === 6) {
+        content = `
+          <h1>I LOVE YOU SO MUCH EEPY 💖</h1>
+          <div class="photo-row">
+            <img src="photo4.jpg" class="photo-large">
+            <img src="photo5.jpg" class="photo-large">
+            <img src="photo6.jpg" class="photo-large">
+          </div>
+        `;
+      }
+
+      const centeredPages = [1, 2, 3, 4];
+      const isCentered = centeredPages.includes(page);
+
+      document.body.innerHTML = `
+        <div class="page ${isCentered ? "center" : ""}" id="page">
+          ${content}
+        </div>
+      `;
+
+      if (page === 5) {
+        setTimeout(() => {
+          document.getElementById("page").classList.add("fade-out");
+        }, 2500);
+
+        setTimeout(() => {
+          page = 6;
+          renderPage();
+        }, 5500);
+      }
+    }
+  </script>
 
 </body>
 </html>
-
-
