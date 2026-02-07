@@ -115,6 +115,8 @@
 	  .photo-large {
 		width: 80%;
 	  }
+			.page.center {
+  	justify-content: center;
 	}
 
 
@@ -204,11 +206,14 @@
     `;
   }
 
-  document.body.innerHTML = `
-    <div class="page" id="page">
-      ${content}
-    </div>
-  `;
+const centeredPages = [1, 2, 3, 4];
+const isCentered = centeredPages.includes(page);
+
+document.body.innerHTML = `
+  <div class="page ${isCentered ? "center" : ""}" id="page">
+    ${content}
+  </div>
+`;
 
   // ⏱ Fade out after 2.5 seconds on page 4
   if (page === 5) {
